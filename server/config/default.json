@@ -1,0 +1,15 @@
+{
+    "PORT" : 6003,
+    "PRIVATE_KEY": "codeforindia",
+    "URL" : "http://127.0.0.1:6003",
+    "DB_URI": "mongodb+srv://thedhinakarr:Dhinakar1%40@cluster0.zdl2lue.mongodb.net/test",
+    "JWT_SECRET": "thedhinakarr",
+    "EMAIL" : {
+        "HOST": "smtp.hostinger.com",
+        "AUTH": {
+            "USER": "info@dhinakarr.in",
+            "PASSWORD": "Dhinakar1@"
+        },
+        "PORT": 465
+    }
+}
