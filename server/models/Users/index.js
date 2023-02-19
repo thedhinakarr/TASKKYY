@@ -23,8 +23,7 @@ let userSchema = new mongoose.Schema({
     },
     phone:{
         type:String,
-        required:true,
-        unique:true
+        required:true
     },
     address:{
         type:String
@@ -49,11 +48,12 @@ let userSchema = new mongoose.Schema({
         email: {
             type: Boolean,
             default: false
-        },
-        phone: {
-            type: Boolean,
-            default: false
         }
+        // },
+        // phone: {
+        //     type: Boolean,
+        //     default: false
+        // }
     }
 
 })

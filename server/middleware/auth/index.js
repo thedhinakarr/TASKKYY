@@ -15,7 +15,7 @@ const isAuthenticated = (req,res,next)=>{
     try {
         let token = req.headers["auth-token"];
         let payload = jwt.verify(token,config.get("JWT_SECRET"));
-        console.log(payload);
+       // console.log(payload);
         req.payload = payload;
         return next();
     } catch (error) {

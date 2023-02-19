@@ -20,6 +20,8 @@ router.post("/register", registerValidations(), errorMiddleWare, async (req, res
     try {
         let { email, firstName, lastName, phone, password, address } = req.body;
 
+        console.log(req.body)
+
         let findEmail = await User.findOne({ email: email });
 
         if (findEmail) {
@@ -42,6 +44,7 @@ router.post("/register", registerValidations(), errorMiddleWare, async (req, res
             address,
             userVerifyToken
         });
+
         console.log(user)
         await user.save();
 
@@ -52,14 +55,14 @@ router.post("/register", registerValidations(), errorMiddleWare, async (req, res
             receiver: email
         });
 
-        await sendSMS({
-            message: `Here is your verification link: \n
-            ${URL}/api/user/verify/phone/${userVerifyToken.phone}`,
-            phone: phone
-        }).catch((err) => {
-            console.log(err);
-            return res.status(400).json({ error: "Invalid phone number" })
-        })
+        // await sendSMS({
+        //     message: `Here is your verification link: \n
+        //     ${URL}/api/user/verify/phone/${userVerifyToken.phone}`,
+        //     phone: phone
+        // }).catch((err) => {
+        //     console.log(err);
+        //     return res.status(400).json({ error: "Invalid phone number" })
+        // })
 
         return res.status(200).json({ message: "User registered successfully" });
 
@@ -72,11 +75,10 @@ router.post("/register", registerValidations(), errorMiddleWare, async (req, res
 router.get("/verify/email/:emailtoken", async (req, res) => {
     try {
         let token = req.params.emailtoken;
+        
 
         let findUser = User.findOne({ "userVerifyToken.email": token })
-
-        console.log(findUser)
-
+      
         if (!findUser) {
             return res.status(400).json({ error: "User does not exist" });
         }
@@ -86,7 +88,7 @@ router.get("/verify/email/:emailtoken", async (req, res) => {
             { $set: { "isVerified.email": true } }
         );
 
-        return res.status(200).json({ success: "Email verification Successfuly" });
+        return res.status(200).json({ success: "Email verified Successfully, Login now." });
 
     } catch (error) {
         console.log(error)
@@ -123,10 +125,13 @@ router.post("/resend/email",async (req, res) => {
         if(!findUser){
             return res.status(401).json({message:"User does not exist"});
         }
+
         let token = findUser.userVerifyToken.email;
+       
+
         await sendMail({
             text: `Use this link to verify email: \n
-            ${URL}/api/user/resend/email/${token}`,
+            ${URL}/api/user/verify/email/${token}`,
             subject:`Email verification`,
             receiver:email
         });
@@ -199,7 +204,5 @@ router.post("/login", loginValidations(), errorMiddleWare, async (req, res) => {
         return res.status(500).json({ error: "Internal server error" });
     }
 });
-
-
 
 export default router;
