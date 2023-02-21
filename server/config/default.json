@@ -1,7 +1,7 @@
 {
     "PORT" : 6003,
     "PRIVATE_KEY": "codeforindia",
-    "URL" : "http://192.168.1.5:6003",
+    "URL" : "http://192.168.68.184:6003",
     "DB_URI": "mongodb+srv://thedhinakarr:Dhinakar1%40@cluster0.zdl2lue.mongodb.net/test",
     "JWT_SECRET": "thedhinakarr",
     "EMAIL" : {

@@ -1,5 +1,5 @@
 {
     "PORT" : "8001",
     "PRIVATE_KEY": "codeforindia",
-    "URL" : "http://localhost:8001"
+    "URL" : "http://192.168.68.184:8001"
 }
