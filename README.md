@@ -67,10 +67,3 @@ Once the server and client are running, users can:
 ## Acknowledgements
 
 Special thanks to the developers and contributors who helped make this task management application possible.
-
-## Notes
-
-- Customize and adapt the application as per your specific requirements and preferences.
-
-Feel free to explore the codebase, contribute, or report issues on the [GitHub repository](https://github.com/yourusername/task-manager).
-
